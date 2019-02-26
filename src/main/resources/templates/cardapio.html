@@ -5,6 +5,22 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <p th:text="'Hello, ' + ${lanches} + '!'" />
+
+    <div>
+        <table class="datagrid">
+            <thead>
+            <tr>
+                <th align="left">Lanche</th>
+                <th align="left">Preço</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="lanche : ${lanches}">
+                <td  th:text="${{lanche.descricao}}"></td>
+                <td  th:text="${{lanche.valor}}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
