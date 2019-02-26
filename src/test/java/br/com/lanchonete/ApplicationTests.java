@@ -4,6 +4,7 @@ import br.com.lanchonete.modelo.Ingrediente;
 import br.com.lanchonete.modelo.Lanche;
 import br.com.lanchonete.repositorio.IngredienteDAO;
 import br.com.lanchonete.repositorio.LancheDAO;
+import br.com.lanchonete.servico.CalculaPrecoService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +24,9 @@ public class ApplicationTests {
 	@Autowired
 	IngredienteDAO ingredienteDAO;
 
+	@Autowired
+	CalculaPrecoService calculaPreco;
+
 	@Test
 	public void valoresLanches() {
 
@@ -36,4 +40,11 @@ public class ApplicationTests {
 		Assert.assertEquals(soma, xbacon.getValor());
 	}
 
+	@Test
+	public void valorLigth() {
+
+		Lanche xburger = lancheDAO.getLanche(X_BURGER);
+		xburger.addIngrediente(ingredienteDAO.getIngredientes(ALFACE));
+		Assert.assertEquals(new Double(xburger.getValor() * 0.9), calculaPreco.getValor(xburger));
+	}
 }
