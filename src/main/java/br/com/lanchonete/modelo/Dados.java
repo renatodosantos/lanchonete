@@ -1,10 +1,10 @@
 package br.com.lanchonete.modelo;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import static br.com.lanchonete.modelo.Constantes.*;
-import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toSet;
 import static br.com.lanchonete.modelo.Constantes.ALFACE;
 
@@ -33,6 +33,14 @@ public class Dados {
                 .filter(u -> descricao.equals(u.getDescricao()))
                 .findAny()
                 .orElse(new Ingrediente("", 0.0));
+    }
+
+    private static ArrayList asList(Ingrediente ... ingredientes){
+        ArrayList lista = new ArrayList();
+        for (int i = 0; i < ingredientes.length; i++) {
+            lista.add(ingredientes[i]);
+        }
+        return lista;
     }
 
 }
